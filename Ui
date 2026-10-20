@@ -389,14 +389,14 @@ function Library:create_ui()
     ClientName.TextTransparency = 0.20000000298023224
     ClientName.Text = 'Ethereal' -- was 'March'
     ClientName.Name = 'ClientName'
-    ClientName.Size = UDim2.new(0, 80, 0, 13)
+    ClientName.Size = UDim2.new(0, 100, 0, 18)   -- was 80, 13
     ClientName.AnchorPoint = Vector2.new(0, 0.5)
     ClientName.Position = UDim2.new(0.025, 0, 0.055, 0)
     ClientName.BackgroundTransparency = 1
     ClientName.TextXAlignment = Enum.TextXAlignment.Left
     ClientName.BorderSizePixel = 0
     ClientName.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    ClientName.TextSize = 13
+    ClientName.TextSize = 17                        -- was 13
     ClientName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     ClientName.Parent = Handler
     
