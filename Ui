@@ -1,5 +1,5 @@
 -- ============================================================================
--- Allusive UI Library — Readable Edition
+-- Ethereal UI Library — Readable Edition (restyled from Allusive)
 -- Anti-detection layer preserved. Full widget set. Zero game logic.
 -- ============================================================================
 
@@ -160,7 +160,7 @@ local function registerGuiRoot(root)
 
     if getgenv_ then
         getgenv_()[GLOBAL_KEY] = root
-        getgenv_()._AllusiveObfuscationRegistry = {
+        getgenv_()._EtherealObfuscationRegistry = {
             GuiRoot = root,
             GlobalKey = GLOBAL_KEY,
             MarkerAttribute = MARKER_ATTR,
@@ -183,7 +183,7 @@ end
 -- Full cleanup from registry.
 local function destroyRegistry()
     if not getgenv_ then return end
-    local registry = getgenv_()._AllusiveObfuscationRegistry
+    local registry = getgenv_()._EtherealObfuscationRegistry
     if typeof_(registry) ~= "table" then return end
 
     if typeof_(registry.GuiRoot) == "Instance" and registry.GuiRoot.Parent then
@@ -278,18 +278,18 @@ local Lib = {
         Success          = "Success",
     },
     Colors = {
-        Background  = Color3_.fromRGB(11, 11, 17),
-        Card        = Color3_.fromRGB(17, 17, 24),
-        CardDeep    = Color3_.fromRGB(13, 13, 20),
-        Stroke      = Color3_.fromRGB(36, 40, 58),
-        StrokeHot   = Color3_.fromRGB(72, 76, 130),
-        Accent      = Color3_.fromRGB(99, 102, 241),
-        AccentDim   = Color3_.fromRGB(55, 58, 190),
-        AccentSoft  = Color3_.fromRGB(172, 178, 255),
-        AccentGlow  = Color3_.fromRGB(99, 102, 241),
-        Text        = Color3_.fromRGB(235, 235, 245),
-        SubText     = Color3_.fromRGB(148, 152, 185),
-        NotifyBg    = Color3_.fromRGB(16, 16, 26),
+        Background  = Color3_.fromRGB(10, 10, 10),
+        Card        = Color3_.fromRGB(16, 16, 16),
+        CardDeep    = Color3_.fromRGB(12, 12, 12),
+        Stroke      = Color3_.fromRGB(40, 40, 40),
+        StrokeHot   = Color3_.fromRGB(55, 55, 55),
+        Accent      = Color3_.fromRGB(255, 255, 255),
+        AccentDim   = Color3_.fromRGB(180, 180, 180),
+        AccentSoft  = Color3_.fromRGB(220, 220, 220),
+        AccentGlow  = Color3_.fromRGB(255, 255, 255),
+        Text        = Color3_.fromRGB(255, 255, 255),
+        SubText     = Color3_.fromRGB(180, 180, 180),
+        NotifyBg    = Color3_.fromRGB(16, 16, 16),
         Danger      = Color3_.fromRGB(240, 70, 70),
         Success     = Color3_.fromRGB(72, 210, 140),
     },
@@ -367,7 +367,7 @@ local Connections = Lib.Connections
 local Library = Lib.Library
 Library.__index = Library
 
--- Icons fetched remotely — same source Allusive uses.
+-- Icons fetched remotely — same icon source as original.
 local Icons = loadstring(
     game_:HttpGet("https://raw.githubusercontent.com/ieltxq/Library/refs/heads/main/Icons")
 )()
@@ -381,8 +381,8 @@ end
 -- Clean up old instances from a previous run.
 destroyAll()
 
-if not isfolder("Allusive") then
-    makefolder("Allusive")
+if not isfolder("Ethereal") then
+    makefolder("Ethereal")
 end
 
 -- ============================================================================
@@ -393,7 +393,7 @@ Config.__index = Config
 
 function Config.save(_, gameId, data)
     local ok, err = pcall_(function()
-        writefile("Allusive/" .. gameId .. ".json", HttpService:JSONEncode(data))
+        writefile("Ethereal/" .. gameId .. ".json", HttpService:JSONEncode(data))
     end)
     if not ok then
         warn("failed to save config", err)
@@ -402,12 +402,12 @@ end
 
 function Config.load(self, gameId, defaults)
     local ok, result = pcall_(function()
-        if not isfile("Allusive/" .. gameId .. ".json") then
+        if not isfile("Ethereal/" .. gameId .. ".json") then
             self:save(gameId, defaults)
             return
         end
 
-        local contents = readfile("Allusive/" .. gameId .. ".json")
+        local contents = readfile("Ethereal/" .. gameId .. ".json")
         if not contents then
             self:save(gameId, defaults)
             return
@@ -688,7 +688,7 @@ function Library.create_ui(self)
     container.ClipsDescendants = true
     container.AnchorPoint = Vector2.new(0.5, 0.5)
     container.Name = "Container"
-    container.BackgroundTransparency = Library._config._gui.bg_transparency or 0.04
+    container.BackgroundTransparency = Library._config._gui.bg_transparency or 0.05
     container.BackgroundColor3 = Colors.Background
     container.Position = UDim2_.new(0.5, 0, 0.5, 0)
     container.Size = UDim2_.new(0, 0, 0, 0)
@@ -697,19 +697,15 @@ function Library.create_ui(self)
     container.Parent = screenGui
 
     local containerCorner = IB.new("UICorner")
-    containerCorner.CornerRadius = UDim_.new(0, 18)
+    containerCorner.CornerRadius = UDim_.new(0, 10)
     containerCorner.Parent = container
 
-    local containerStroke = IB.new("UIStroke")
-    containerStroke.Color = Colors.StrokeHot
-    containerStroke.Transparency = 0.6
-    containerStroke.ApplyStrokeMode = Enum_.ApplyStrokeMode.Border
-    containerStroke.Parent = container
+    -- outer stroke removed (Ethereal-style clean edge)
 
     local handler = IB.new("Frame")
     handler.BackgroundTransparency = 1
     handler.Name = "Handler"
-    handler.Size = UDim2_.new(0, 698, 0, 479)
+    handler.Size = UDim2_.new(0, 620, 0, 420)
     handler.BorderSizePixel = 0
     handler.Parent = container
 
@@ -850,25 +846,25 @@ function Library.create_ui(self)
     vdGradient.Rotation = 90
     vdGradient.Parent = verticalDivider
 
-    -- Client name label
+    -- Client name label (Ethereal-style white title)
     local clientName = IB.new("TextLabel")
-    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.Bold)
-    clientName.TextColor3 = Colors.Accent
-    clientName.TextTransparency = 0.05
-    clientName.Text = "Allusive"
+    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.SemiBold)
+    clientName.TextColor3 = Color3_.fromRGB(255, 255, 255)
+    clientName.TextTransparency = 0.15
+    clientName.Text = "Ethereal"
     clientName.Name = "ClientName"
-    clientName.Size = UDim2_.new(0, 68, 0, 14)
+    clientName.Size = UDim2_.new(0, 72, 0, 14)
     clientName.AnchorPoint = Vector2.new(0, 0.5)
     clientName.Position = UDim2_.new(0.056, 0, 0.055, 0)
     clientName.BackgroundTransparency = 1
     clientName.TextXAlignment = Enum_.TextXAlignment.Left
-    clientName.TextSize = 15
+    clientName.TextSize = 13
     clientName.Parent = handler
 
     local clientGradient = IB.new("UIGradient")
     clientGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Colors.Accent),
-        ColorSequenceKeypoint.new(0.42, Colors.Accent),
+        ColorSequenceKeypoint.new(0, Color3_.fromRGB(160, 160, 160)),
+        ColorSequenceKeypoint.new(0.42, Color3_.fromRGB(255, 255, 255)),
         ColorSequenceKeypoint.new(1, Colors.Accent),
     })
     clientGradient.Offset = Vector2.new(0, 0)
@@ -925,7 +921,7 @@ function Library.create_ui(self)
     self._container_uiscale      = containerScale
     self._ui                     = screenGui
     self._theme_container        = container
-    self._theme_container_stroke = containerStroke
+    self._theme_container_stroke = nil -- outer stroke removed
     self._theme_vert_div         = verticalDivider
     self._theme_search           = searchFrame
     self._theme_search_stroke    = searchStroke
@@ -1023,7 +1019,7 @@ function Library.create_ui(self)
             TweenService:Create(scale, TweenInfo.new(0.34, Enum_.EasingStyle.Quint, Enum_.EasingDirection.Out), { Scale = normalScale }):Play()
         end
 
-        local targetSize = open and UDim2_.fromOffset(698, 479) or UDim2_.fromOffset(104.5, 52)
+        local targetSize = open and UDim2_.fromOffset(620, 420) or UDim2_.fromOffset(104.5, 52)
         TweenService:Create(container, TweenInfo.new(0.34, Enum_.EasingStyle.Quint, Enum_.EasingDirection.Out), { Size = targetSize }):Play()
     end
 
@@ -1047,7 +1043,7 @@ function Library.create_ui(self)
         end
 
         TweenService:Create(container, TweenInfo.new(0.55, Enum_.EasingStyle.Quint, Enum_.EasingDirection.Out), {
-            Size = UDim2_.fromOffset(698, 479),
+            Size = UDim2_.fromOffset(620, 420),
         }):Play()
         self._ui_loaded = true
     end
@@ -2044,7 +2040,7 @@ function Library.create_ui(self)
 
                 -- (Full dropdown body: box, header, currentOption, arrow, scrolling options,
                 --  search box, multi-select logic, unfold_settings tweening, keybind support...
-                --  This is ~250 lines. Paste verbatim from Allusive leaked.txt between the
+                --  This is ~250 lines. Paste verbatim from original library source between the
                 --  "local u954" block and the "return u946" line — it's pure UI.)
 
                 return api
@@ -2052,7 +2048,7 @@ function Library.create_ui(self)
 
             -- create_doubleslider, create_colorpicker, create_textbox,
             -- create_divider, create_paragraph, create_text, create_feature:
-            -- paste verbatim from Allusive leaked.txt (all are pure UI code).
+            -- paste verbatim from original library source (all are pure UI code).
 
             return moduleApi
         end
@@ -2088,11 +2084,11 @@ end
 -- ============================================================================
 -- Section 8: Boot
 -- ============================================================================
-local allusive = Library.new()
-allusive:load()
+local ethereal = Library.new()
+ethereal:load()
 
 -- Example usage:
--- local tab = allusive:create_tab("Combat", "sword")
+-- local tab = ethereal:create_tab("Combat", "sword")
 -- local mod = tab:create_module({
 --     title = "Auto Parry", description = "deflects balls",
 --     section = "left", flag = "auto_parry", notify = true,
