@@ -1,5 +1,5 @@
 -- ============================================================================
--- Ethereal UI Library — Readable Edition (restyled from Allusive)
+-- Ethereal UI Library — Readable Edition (restyled from AllUUUUUusive)
 -- Anti-detection layer preserved. Full widget set. Zero game logic.
 -- ============================================================================
 
@@ -828,32 +828,16 @@ function Library.create_ui(self)
     makeDivider(UDim2_.new(0.23, 0, 0.12, 0), UDim2_.new(0, 450, 0, 1))
     makeDivider(UDim2_.new(0, 0, 0.12, 0), UDim2_.new(0, 157, 0, 1))
 
-    -- Vertical divider (between tabs and content)
-    local verticalDivider = IB.new("Frame")
-    verticalDivider.BackgroundTransparency = 0.48
-    verticalDivider.BorderSizePixel = 0
-    verticalDivider.BackgroundColor3 = Colors.Stroke
-    verticalDivider.Position = UDim2_.new(0.225, 0, 0.13, 0)
-    verticalDivider.Size = UDim2_.new(0, 1, 0.78, 0)
-    verticalDivider.Parent = handler
-    local vdGradient = IB.new("UIGradient")
-    vdGradient.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 1),
-        NumberSequenceKeypoint.new(0.15, 0),
-        NumberSequenceKeypoint.new(0.85, 0),
-        NumberSequenceKeypoint.new(1, 1),
-    })
-    vdGradient.Rotation = 90
-    vdGradient.Parent = verticalDivider
+    -- vertical divider removed (no stitch)
 
-    -- Client name label (Ethereal-style white title)
+    -- Client name — match original Ethereal placement/size
     local clientName = IB.new("TextLabel")
-    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.SemiBold)
+    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.SemiBold, Enum_.FontStyle.Normal)
     clientName.TextColor3 = Color3_.fromRGB(255, 255, 255)
-    clientName.TextTransparency = 0.15
+    clientName.TextTransparency = 0.2
     clientName.Text = "Ethereal"
     clientName.Name = "ClientName"
-    clientName.Size = UDim2_.new(0, 72, 0, 14)
+    clientName.Size = UDim2_.new(0, 70, 0, 13)
     clientName.AnchorPoint = Vector2.new(0, 0.5)
     clientName.Position = UDim2_.new(0.056, 0, 0.055, 0)
     clientName.BackgroundTransparency = 1
@@ -863,25 +847,12 @@ function Library.create_ui(self)
 
     local clientGradient = IB.new("UIGradient")
     clientGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3_.fromRGB(160, 160, 160)),
-        ColorSequenceKeypoint.new(0.42, Color3_.fromRGB(255, 255, 255)),
-        ColorSequenceKeypoint.new(1, Colors.Accent),
+        ColorSequenceKeypoint.new(0, Color3_.fromRGB(155, 155, 155)),
+        ColorSequenceKeypoint.new(1, Color3_.fromRGB(255, 255, 255)),
     })
-    clientGradient.Offset = Vector2.new(0, 0)
     clientGradient.Parent = clientName
 
-    -- Active-tab pin indicator
-    local pin = IB.new("Frame")
-    pin.Name = "Pin"
-    pin.Position = UDim2_.new(0.026, 0, 0.136, 0)
-    pin.Size = UDim2_.new(0, 2, 0, 16)
-    pin.BorderSizePixel = 0
-    pin.BackgroundColor3 = Colors.Accent
-    pin.Visible = false
-    pin.Parent = handler
-    local pinCorner = IB.new("UICorner")
-    pinCorner.CornerRadius = UDim_.new(0, 12)
-    pinCorner.Parent = pin
+    -- active-tab pin removed (no dancing stitch)
 
     -- Client logo
     local logo = IB.new("ImageLabel")
@@ -922,14 +893,14 @@ function Library.create_ui(self)
     self._ui                     = screenGui
     self._theme_container        = container
     self._theme_container_stroke = nil -- outer stroke removed
-    self._theme_vert_div         = verticalDivider
+    self._theme_vert_div         = nil
     self._theme_search           = searchFrame
     self._theme_search_stroke    = searchStroke
     self._theme_search_icon      = searchButton
     self._theme_search_box       = searchBox
     self._theme_client_name      = clientName
     self._theme_client_grad      = clientGradient
-    self._theme_pin              = pin
+    self._theme_pin              = nil
     self._theme_logo             = logo
     self._theme_tabs_ref         = tabList
 
