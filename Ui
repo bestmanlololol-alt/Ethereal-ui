@@ -1,6 +1,6 @@
 -- ============================================================================
 -- Ethereal UI Library — Readable Edition (restyled from Allusive)
--- Anti-detection layer preserved. Full widget set. Zero game logic.
+-- Anti-detection layer preserved. Full widget set. Zero gaame logic.
 -- ============================================================================
 
 -- ============================================================================
@@ -640,25 +640,44 @@ end
 function Library.create_ui(self)
     local IB = UIBuilder
 
-    -- Force black/white theme. Ignore any old Allusive blue color saves.
+    -- Apply saved theme colors if present
     do
         local saved = Library._config._gui
-        if saved then
-            saved.colors = nil -- wipe blue accent leftovers from old configs
+        if saved and saved.colors then
+            for key, hsv in pairs_(saved.colors) do
+                if type_(hsv) == "table" and hsv.H ~= nil and Lib.Colors[key] then
+                    Lib.Colors[key] = Color3_.fromHSV(hsv.H, hsv.S, hsv.V)
+                end
+            end
+
+            local C = Lib.Colors
+            if saved.colors.Stroke then
+                local s = C.Stroke
+                C.StrokeHot = Color3_.new(
+                    Math_.clamp(s.R * 1.2 + 0.05, 0, 1),
+                    Math_.clamp(s.G * 1.2 + 0.05, 0, 1),
+                    Math_.clamp(s.B * 1.22 + 0.06, 0, 1)
+                )
+            end
+            if saved.colors.Accent then
+                local a = C.Accent
+                C.AccentSoft = Color3_.new(
+                    Math_.clamp(a.R * 0.55 + 0.42, 0, 1),
+                    Math_.clamp(a.G * 0.55 + 0.42, 0, 1),
+                    Math_.clamp(a.B * 0.58 + 0.45, 0, 1)
+                )
+                C.AccentDim = Color3_.new(
+                    Math_.clamp(a.R * 0.42, 0, 1),
+                    Math_.clamp(a.G * 0.42, 0, 1),
+                    Math_.clamp(a.B * 0.48, 0, 1)
+                )
+                C.AccentGlow = a
+            end
+            if saved.colors.Card then
+                local c = C.Card
+                C.CardDeep = Color3_.new(c.R * 0.78, c.G * 0.78, c.B * 0.8)
+            end
         end
-        local C = Lib.Colors
-        C.Background  = Color3_.fromRGB(10, 10, 10)
-        C.Card        = Color3_.fromRGB(16, 16, 16)
-        C.CardDeep    = Color3_.fromRGB(12, 12, 12)
-        C.Stroke      = Color3_.fromRGB(40, 40, 40)
-        C.StrokeHot   = Color3_.fromRGB(55, 55, 55)
-        C.Accent      = Color3_.fromRGB(255, 255, 255)
-        C.AccentDim   = Color3_.fromRGB(180, 180, 180)
-        C.AccentSoft  = Color3_.fromRGB(220, 220, 220)
-        C.AccentGlow  = Color3_.fromRGB(255, 255, 255)
-        C.Text        = Color3_.fromRGB(255, 255, 255)
-        C.SubText     = Color3_.fromRGB(180, 180, 180)
-        C.NotifyBg    = Color3_.fromRGB(16, 16, 16)
     end
 
     local Colors = Lib.Colors
@@ -681,12 +700,7 @@ function Library.create_ui(self)
     containerCorner.CornerRadius = UDim_.new(0, 10)
     containerCorner.Parent = container
 
-    -- NO outer stroke / NO blue left edge (kill any UIStroke on container)
-    for _, child in ipairs_(container:GetChildren()) do
-        if child:IsA("UIStroke") then
-            child:Destroy()
-        end
-    end
+    -- outer stroke removed (Ethereal-style clean edge)
 
     local handler = IB.new("Frame")
     handler.BackgroundTransparency = 1
@@ -814,45 +828,64 @@ function Library.create_ui(self)
     makeDivider(UDim2_.new(0.23, 0, 0.12, 0), UDim2_.new(0, 450, 0, 1))
     makeDivider(UDim2_.new(0, 0, 0.12, 0), UDim2_.new(0, 157, 0, 1))
 
-    -- vertical divider removed (no stitch)
+    -- Vertical divider (between tabs and content)
+    local verticalDivider = IB.new("Frame")
+    verticalDivider.BackgroundTransparency = 0.48
+    verticalDivider.BorderSizePixel = 0
+    verticalDivider.BackgroundColor3 = Colors.Stroke
+    verticalDivider.Position = UDim2_.new(0.225, 0, 0.13, 0)
+    verticalDivider.Size = UDim2_.new(0, 1, 0.78, 0)
+    verticalDivider.Parent = handler
+    local vdGradient = IB.new("UIGradient")
+    vdGradient.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 1),
+        NumberSequenceKeypoint.new(0.15, 0),
+        NumberSequenceKeypoint.new(0.85, 0),
+        NumberSequenceKeypoint.new(1, 1),
+    })
+    vdGradient.Rotation = 90
+    vdGradient.Parent = verticalDivider
 
-    -- Client name — match original Ethereal placement/size
+    -- Client name label (Ethereal-style white title)
     local clientName = IB.new("TextLabel")
-    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.SemiBold, Enum_.FontStyle.Normal)
+    clientName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum_.FontWeight.SemiBold)
     clientName.TextColor3 = Color3_.fromRGB(255, 255, 255)
-    clientName.TextTransparency = 0.2
+    clientName.TextTransparency = 0.15
     clientName.Text = "Ethereal"
     clientName.Name = "ClientName"
-    clientName.Size = UDim2_.new(0, 70, 0, 13)
-    clientName.AnchorPoint = Vector2.new(0, 0.5)
-    clientName.Position = UDim2_.new(0.056, 0, 0.055, 0)
+    clientName.Size = UDim2_.new(0, 100, 0, 14)
+    clientName.AnchorPoint = Vector2.new(0.5, 0.5)
+    clientName.Position = UDim2_.new(0.5, 0, 0.055, 0)
     clientName.BackgroundTransparency = 1
-    clientName.TextXAlignment = Enum_.TextXAlignment.Left
+    clientName.TextXAlignment = Enum_.TextXAlignment.Center
     clientName.TextSize = 13
     clientName.Parent = handler
 
     local clientGradient = IB.new("UIGradient")
     clientGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3_.fromRGB(155, 155, 155)),
-        ColorSequenceKeypoint.new(1, Color3_.fromRGB(255, 255, 255)),
+        ColorSequenceKeypoint.new(0, Color3_.fromRGB(160, 160, 160)),
+        ColorSequenceKeypoint.new(0.42, Color3_.fromRGB(255, 255, 255)),
+        ColorSequenceKeypoint.new(1, Colors.Accent),
     })
+    clientGradient.Offset = Vector2.new(0, 0)
     clientGradient.Parent = clientName
 
-    -- active-tab pin removed (no dancing stitch)
+    -- Active-tab pin indicator
+    local pin = IB.new("Frame")
+    pin.Name = "Pin"
+    pin.Position = UDim2_.new(0.026, 0, 0.136, 0)
+    pin.Size = UDim2_.new(0, 2, 0, 16)
+    pin.BorderSizePixel = 0
+    pin.BackgroundColor3 = Colors.Accent
+    pin.Visible = false
+    pin.Parent = handler
+    local pinCorner = IB.new("UICorner")
+    pinCorner.CornerRadius = UDim_.new(0, 12)
+    pinCorner.Parent = pin
 
-    -- Client logo
-    local logo = IB.new("ImageLabel")
-    logo.ScaleType = Enum_.ScaleType.Fit
-    logo.AnchorPoint = Vector2.new(0, 0.5)
-    logo.Image = "rbxassetid://99206841644167"
-    logo.BackgroundTransparency = 1
-    logo.Position = UDim2_.new(0.025, 0, 0.055, 0)
-    logo.Name = "Icon"
-    logo.Size = UDim2_.new(0, 18, 0, 18)
-    logo.BorderSizePixel = 0
-    logo.ImageColor3 = Color3_.fromRGB(255, 255, 255)
-    logo.ImageRectSize = Vector2.new(32, 32)
-    logo.Parent = handler
+    -- Client logo removed
+    local logo = nil
+
 
     -- Sections folder (holds left/right per tab)
     local sectionsFolder = IB.new("Folder")
@@ -879,14 +912,14 @@ function Library.create_ui(self)
     self._ui                     = screenGui
     self._theme_container        = container
     self._theme_container_stroke = nil -- outer stroke removed
-    self._theme_vert_div         = nil
+    self._theme_vert_div         = verticalDivider
     self._theme_search           = searchFrame
     self._theme_search_stroke    = searchStroke
     self._theme_search_icon      = searchButton
     self._theme_search_box       = searchBox
     self._theme_client_name      = clientName
     self._theme_client_grad      = clientGradient
-    self._theme_pin              = nil
+    self._theme_pin              = pin
     self._theme_logo             = logo
     self._theme_tabs_ref         = tabList
 
@@ -1311,7 +1344,7 @@ function Library.create_ui(self)
             accentBar.Size = UDim2_.new(0, 2, 0, 50)
             accentBar.Position = UDim2_.new(0, 2, 0.5, 0)
             accentBar.AnchorPoint = Vector2.new(0, 0.5)
-            accentBar.BackgroundColor3 = Color3_.fromRGB(55, 55, 55)
+            accentBar.BackgroundColor3 = Lib.Colors.AccentDim
             accentBar.BackgroundTransparency = 0.45
             accentBar.BorderSizePixel = 0
             accentBar.ZIndex = 3
@@ -1648,10 +1681,10 @@ function Library.create_ui(self)
                 toggleTrack.BackgroundTransparency = 0.3
                 toggleKnob.BackgroundColor3 = Colors.Background
                 toggleKnob.Position = UDim2_.new(1, -11, 0.5, 0)
-                accentBar.BackgroundColor3 = Color3_.fromRGB(55, 55, 55)
+                accentBar.BackgroundColor3 = Colors.Accent
                 accentBar.BackgroundTransparency = 0.08
-                moduleStroke.Color = Color3_.fromRGB(80, 80, 80)
-                moduleStroke.Transparency = 0.5
+                moduleStroke.Color = Colors.Accent
+                moduleStroke.Transparency = 0.68
                 moduleOptions.callback(moduleApi._state)
             end
 
