@@ -358,7 +358,7 @@ function Library:create_ui()
     Handler.BackgroundTransparency = 1
     Handler.Name = 'Handler'
     Handler.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Handler.Size = UDim2.new(0, 698, 0, 479)
+    Handler.Size = UDim2.new(0, 560, 0, 380) -- was 698, 479
     Handler.BorderSizePixel = 0
     Handler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Handler.Parent = Container
@@ -367,11 +367,11 @@ function Library:create_ui()
     Tabs.ScrollBarImageTransparency = 1
     Tabs.ScrollBarThickness = 0
     Tabs.Name = 'Tabs'
-    Tabs.Size = UDim2.new(0, 129, 0, 401)
+    Tabs.Size = UDim2.new(0, 105, 0, 320) -- was 129, 401
     Tabs.Selectable = false
     Tabs.AutomaticCanvasSize = Enum.AutomaticSize.XY
     Tabs.BackgroundTransparency = 1
-    Tabs.Position = UDim2.new(0.026097271591424942, 0, 0.1111111119389534, 0)
+    Tabs.Position = UDim2.new(0.026, 0, 0.111, 0)
     Tabs.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Tabs.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Tabs.BorderSizePixel = 0
@@ -389,14 +389,14 @@ function Library:create_ui()
     ClientName.TextTransparency = 0.20000000298023224
     ClientName.Text = 'Ethereal' -- was 'March'
     ClientName.Name = 'ClientName'
-    ClientName.Size = UDim2.new(0, 120, 0, 18)   -- was 100, 18
-    ClientName.AnchorPoint = Vector2.new(0.5, 0.5)
-    ClientName.Position = UDim2.new(0.1175, 0, 0.055, 0) -- center of left sidebar (0 → 0.235)
+    ClientName.Size = UDim2.new(0, 90, 0, 16)   -- was 100, 18
+    ClientName.AnchorPoint = Vector2.new(0, 0.5)
+    ClientName.Position = UDim2.new(0.025, 0, 0.055, 0)
     ClientName.BackgroundTransparency = 1
-    ClientName.TextXAlignment = Enum.TextXAlignment.Center
+    ClientName.TextXAlignment = Enum.TextXAlignment.Left
     ClientName.BorderSizePixel = 0
     ClientName.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    ClientName.TextSize = 17                        -- was 13
+    ClientName.TextSize = 15                        -- was 17
     ClientName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     ClientName.Parent = Handler
     
@@ -409,9 +409,9 @@ function Library:create_ui()
     
     local Pin = Instance.new('Frame')
     Pin.Name = 'Pin'
-    Pin.Position = UDim2.new(0.026000000536441803, 0, 0.13600000739097595, 0)
+    Pin.Position = UDim2.new(0.026, 0, 0.136, 0)
     Pin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Pin.Size = UDim2.new(0, 2, 0, 16)
+    Pin.Size = UDim2.new(0, 2, 0, 14) -- was 2, 16
     Pin.BorderSizePixel = 0
     Pin.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
     Pin.Parent = Handler
@@ -425,9 +425,9 @@ function Library:create_ui()
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
     Divider.BackgroundTransparency = 0.5
-    Divider.Position = UDim2.new(0.23499999940395355, 0, 0, 0)
+    Divider.Position = UDim2.new(0.235, 0, 0, 0) -- was 0.235
     Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Divider.Size = UDim2.new(0, 1, 0, 479)
+    Divider.Size = UDim2.new(0, 1, 0, 380) -- was 479
     Divider.BorderSizePixel = 0
     Divider.BackgroundColor3 = Color3.fromRGB(55, 55, 55) -- was 52, 66, 89
     Divider.Parent = Handler
@@ -444,8 +444,8 @@ function Library:create_ui()
     Minimize.AutoButtonColor = false
     Minimize.Name = 'Minimize'
     Minimize.BackgroundTransparency = 1
-    Minimize.Position = UDim2.new(0.020057305693626404, 0, 0.02922755666077137, 0)
-    Minimize.Size = UDim2.new(0, 24, 0, 24)
+    Minimize.Position = UDim2.new(0.020, 0, 0.029, 0)
+    Minimize.Size = UDim2.new(0, 20, 0, 20) -- was 24, 24
     Minimize.BorderSizePixel = 0
     Minimize.TextSize = 14
     Minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -517,11 +517,11 @@ function Library:create_ui()
     function self:change_visiblity(state: boolean)
         if state then
             TweenService:Create(Container, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                Size = UDim2.fromOffset(698, 479)
+                Size = UDim2.fromOffset(560, 380) -- was 698, 479
             }):Play()
         else
             TweenService:Create(Container, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                Size = UDim2.fromOffset(104.5, 52)
+                Size = UDim2.fromOffset(84, 42) -- was 104.5, 52
             }):Play()
         end
     end
@@ -552,7 +552,7 @@ function Library:create_ui()
         end
     
         TweenService:Create(Container, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-            Size = UDim2.fromOffset(698, 479)
+            Size = UDim2.fromOffset(560, 380) -- was 698, 479
         }):Play()
 
         self._ui_loaded = true
@@ -636,7 +636,7 @@ function Library:create_ui()
         local font_params = Instance.new('GetTextBoundsParams')
         font_params.Text = title
         font_params.Font = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-        font_params.Size = 13
+        font_params.Size = 12
         font_params.Width = 10000
 
         local font_size = TextService:GetTextBoundsAsync(font_params)
@@ -650,7 +650,7 @@ function Library:create_ui()
         Tab.AutoButtonColor = false
         Tab.BackgroundTransparency = 1
         Tab.Name = 'Tab'
-        Tab.Size = UDim2.new(0, 129, 0, 38)
+        Tab.Size = UDim2.new(0, 105, 0, 32) -- was 129, 38
         Tab.BorderSizePixel = 0
         Tab.TextSize = 14
         Tab.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- was 22, 28, 38
@@ -668,12 +668,12 @@ function Library:create_ui()
         TextLabel.Text = title
         TextLabel.Size = UDim2.new(0, font_size.X, 0, 16)
         TextLabel.AnchorPoint = Vector2.new(0, 0.5)
-        TextLabel.Position = UDim2.new(0.2400001734495163, 0, 0.5, 0)
+        TextLabel.Position = UDim2.new(0.24, 0, 0.5, 0)
         TextLabel.BackgroundTransparency = 1
         TextLabel.TextXAlignment = Enum.TextXAlignment.Left
         TextLabel.BorderSizePixel = 0
         TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextLabel.TextSize = 13
+        TextLabel.TextSize = 12 -- was 13
         TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextLabel.Parent = Tab
         
@@ -691,10 +691,10 @@ function Library:create_ui()
         Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
         Icon.AnchorPoint = Vector2.new(0, 0.5)
         Icon.BackgroundTransparency = 1
-        Icon.Position = UDim2.new(0.10000000149011612, 0, 0.5, 0)
+        Icon.Position = UDim2.new(0.1, 0, 0.5, 0)
         Icon.Name = 'Icon'
         Icon.Image = icon
-        Icon.Size = UDim2.new(0, 12, 0, 12)
+        Icon.Size = UDim2.new(0, 11, 0, 11) -- was 12, 12
         Icon.BorderSizePixel = 0
         Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         Icon.Parent = Tab
@@ -703,12 +703,12 @@ function Library:create_ui()
         LeftSection.Name = 'LeftSection'
         LeftSection.AutomaticCanvasSize = Enum.AutomaticSize.XY
         LeftSection.ScrollBarThickness = 0
-        LeftSection.Size = UDim2.new(0, 243, 0, 445)
+        LeftSection.Size = UDim2.new(0, 196, 0, 352) -- was 243, 445
         LeftSection.Selectable = false
         LeftSection.AnchorPoint = Vector2.new(0, 0.5)
         LeftSection.ScrollBarImageTransparency = 1
         LeftSection.BackgroundTransparency = 1
-        LeftSection.Position = UDim2.new(0.2594326436519623, 0, 0.5, 0)
+        LeftSection.Position = UDim2.new(0.259, 0, 0.5, 0)
         LeftSection.BorderColor3 = Color3.fromRGB(0, 0, 0)
         LeftSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         LeftSection.BorderSizePixel = 0
@@ -717,7 +717,7 @@ function Library:create_ui()
         LeftSection.Parent = Sections
         
         local UIListLayout = Instance.new('UIListLayout')
-        UIListLayout.Padding = UDim.new(0, 11)
+        UIListLayout.Padding = UDim.new(0, 9) -- was 11
         UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
         UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
         UIListLayout.Parent = LeftSection
@@ -730,12 +730,12 @@ function Library:create_ui()
         RightSection.Name = 'RightSection'
         RightSection.AutomaticCanvasSize = Enum.AutomaticSize.XY
         RightSection.ScrollBarThickness = 0
-        RightSection.Size = UDim2.new(0, 243, 0, 445)
+        RightSection.Size = UDim2.new(0, 196, 0, 352) -- was 243, 445
         RightSection.Selectable = false
         RightSection.AnchorPoint = Vector2.new(0, 0.5)
         RightSection.ScrollBarImageTransparency = 1
         RightSection.BackgroundTransparency = 1
-        RightSection.Position = UDim2.new(0.6290000081062317, 0, 0.5, 0)
+        RightSection.Position = UDim2.new(0.629, 0, 0.5, 0)
         RightSection.BorderColor3 = Color3.fromRGB(0, 0, 0)
         RightSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         RightSection.BorderSizePixel = 0
@@ -744,7 +744,7 @@ function Library:create_ui()
         RightSection.Parent = Sections
         
         local UIListLayout = Instance.new('UIListLayout')
-        UIListLayout.Padding = UDim.new(0, 11)
+        UIListLayout.Padding = UDim.new(0, 9) -- was 11
         UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
         UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
         UIListLayout.Parent = RightSection
@@ -785,9 +785,9 @@ function Library:create_ui()
             Module.ClipsDescendants = true
             Module.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Module.BackgroundTransparency = 0.5
-            Module.Position = UDim2.new(0.004115226212888956, 0, 0, 0)
+            Module.Position = UDim2.new(0.004, 0, 0, 0)
             Module.Name = 'Module'
-            Module.Size = UDim2.new(0, 241, 0, 93)
+            Module.Size = UDim2.new(0, 194, 0, 76) -- was 241, 93
             Module.BorderSizePixel = 0
             Module.BackgroundColor3 = Color3.fromRGB(18, 18, 18) -- was 22, 28, 38
             Module.Parent = settings.section
@@ -814,7 +814,7 @@ function Library:create_ui()
             Header.AutoButtonColor = false
             Header.BackgroundTransparency = 1
             Header.Name = 'Header'
-            Header.Size = UDim2.new(0, 241, 0, 93)
+            Header.Size = UDim2.new(0, 194, 0, 76) -- was 241, 93
             Header.BorderSizePixel = 0
             Header.TextSize = 14
             Header.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -828,9 +828,9 @@ function Library:create_ui()
             Icon.AnchorPoint = Vector2.new(0, 0.5)
             Icon.Image = 'rbxassetid://79095934438045'
             Icon.BackgroundTransparency = 1
-            Icon.Position = UDim2.new(0.07100000232458115, 0, 0.8199999928474426, 0)
+            Icon.Position = UDim2.new(0.071, 0, 0.82, 0)
             Icon.Name = 'Icon'
-            Icon.Size = UDim2.new(0, 15, 0, 15)
+            Icon.Size = UDim2.new(0, 13, 0, 13) -- was 15, 15
             Icon.BorderSizePixel = 0
             Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Icon.Parent = Header
@@ -846,14 +846,14 @@ function Library:create_ui()
                 ModuleName.Text = settings.richtext or "<font color='rgb(255,255,255)'>Ethereal</font> user"
             end;
             ModuleName.Name = 'ModuleName'
-            ModuleName.Size = UDim2.new(0, 205, 0, 13)
+            ModuleName.Size = UDim2.new(0, 165, 0, 12) -- was 205, 13
             ModuleName.AnchorPoint = Vector2.new(0, 0.5)
-            ModuleName.Position = UDim2.new(0.0729999989271164, 0, 0.23999999463558197, 0)
+            ModuleName.Position = UDim2.new(0.073, 0, 0.24, 0)
             ModuleName.BackgroundTransparency = 1
             ModuleName.TextXAlignment = Enum.TextXAlignment.Left
             ModuleName.BorderSizePixel = 0
             ModuleName.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            ModuleName.TextSize = 13
+            ModuleName.TextSize = 12 -- was 13
             ModuleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ModuleName.Parent = Header
             
@@ -863,23 +863,23 @@ function Library:create_ui()
             Description.TextTransparency = 0.699999988079071
             Description.Text = settings.description
             Description.Name = 'Description'
-            Description.Size = UDim2.new(0, 205, 0, 13)
+            Description.Size = UDim2.new(0, 165, 0, 12) -- was 205, 13
             Description.AnchorPoint = Vector2.new(0, 0.5)
-            Description.Position = UDim2.new(0.0729999989271164, 0, 0.41999998688697815, 0)
+            Description.Position = UDim2.new(0.073, 0, 0.42, 0)
             Description.BackgroundTransparency = 1
             Description.TextXAlignment = Enum.TextXAlignment.Left
             Description.BorderSizePixel = 0
             Description.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Description.TextSize = 10
+            Description.TextSize = 9 -- was 10
             Description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Description.Parent = Header
             
             local Toggle = Instance.new('Frame')
             Toggle.Name = 'Toggle'
             Toggle.BackgroundTransparency = 0.699999988079071
-            Toggle.Position = UDim2.new(0.8199999928474426, 0, 0.7570000290870667, 0)
+            Toggle.Position = UDim2.new(0.82, 0, 0.757, 0)
             Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Toggle.Size = UDim2.new(0, 25, 0, 12)
+            Toggle.Size = UDim2.new(0, 22, 0, 11) -- was 25, 12
             Toggle.BorderSizePixel = 0
             Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Toggle.Parent = Header
@@ -894,7 +894,7 @@ function Library:create_ui()
             Circle.BackgroundTransparency = 0.20000000298023224
             Circle.Position = UDim2.new(0, 0, 0.5, 0)
             Circle.Name = 'Circle'
-            Circle.Size = UDim2.new(0, 12, 0, 12)
+            Circle.Size = UDim2.new(0, 11, 0, 11) -- was 12, 12
             Circle.BorderSizePixel = 0
             Circle.BackgroundColor3 = Color3.fromRGB(70, 70, 70) -- was 66, 80, 115
             Circle.Parent = Toggle
@@ -906,9 +906,9 @@ function Library:create_ui()
             local Keybind = Instance.new('Frame')
             Keybind.Name = 'Keybind'
             Keybind.BackgroundTransparency = 0.699999988079071
-            Keybind.Position = UDim2.new(0.15000000596046448, 0, 0.7350000143051147, 0)
+            Keybind.Position = UDim2.new(0.15, 0, 0.735, 0)
             Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Keybind.Size = UDim2.new(0, 33, 0, 15)
+            Keybind.Size = UDim2.new(0, 29, 0, 14) -- was 33, 15
             Keybind.BorderSizePixel = 0
             Keybind.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
             Keybind.Parent = Header
@@ -923,12 +923,12 @@ function Library:create_ui()
             TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
             TextLabel.Text = 'None'
             TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-            TextLabel.Size = UDim2.new(0, 25, 0, 13)
+            TextLabel.Size = UDim2.new(0, 22, 0, 12) -- was 25, 13
             TextLabel.BackgroundTransparency = 1
             TextLabel.TextXAlignment = Enum.TextXAlignment.Left
             TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
             TextLabel.BorderSizePixel = 0
-            TextLabel.TextSize = 10
+            TextLabel.TextSize = 9 -- was 10
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.Parent = Keybind
             
@@ -936,9 +936,9 @@ function Library:create_ui()
             Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Divider.AnchorPoint = Vector2.new(0.5, 0)
             Divider.BackgroundTransparency = 0.5
-            Divider.Position = UDim2.new(0.5, 0, 0.6200000047683716, 0)
+            Divider.Position = UDim2.new(0.5, 0, 0.62, 0)
             Divider.Name = 'Divider'
-            Divider.Size = UDim2.new(0, 241, 0, 1)
+            Divider.Size = UDim2.new(0, 194, 0, 1) -- was 241
             Divider.BorderSizePixel = 0
             Divider.BackgroundColor3 = Color3.fromRGB(55, 55, 55) -- was 52, 66, 89
             Divider.Parent = Header
@@ -949,7 +949,7 @@ function Library:create_ui()
             Divider.BackgroundTransparency = 0.5
             Divider.Position = UDim2.new(0.5, 0, 1, 0)
             Divider.Name = 'Divider'
-            Divider.Size = UDim2.new(0, 241, 0, 1)
+            Divider.Size = UDim2.new(0, 194, 0, 1) -- was 241
             Divider.BorderSizePixel = 0
             Divider.BackgroundColor3 = Color3.fromRGB(55, 55, 55) -- was 52, 66, 89
             Divider.Parent = Header
@@ -959,13 +959,13 @@ function Library:create_ui()
             Options.BackgroundTransparency = 1
             Options.Position = UDim2.new(0, 0, 1, 0)
             Options.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Options.Size = UDim2.new(0, 241, 0, 8)
+            Options.Size = UDim2.new(0, 194, 0, 8) -- was 241
             Options.BorderSizePixel = 0
             Options.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Options.Parent = Module
 
             local UIPadding = Instance.new('UIPadding')
-            UIPadding.PaddingTop = UDim.new(0, 8)
+            UIPadding.PaddingTop = UDim.new(0, 7) -- was 8
             UIPadding.Parent = Options
 
             local UIListLayout = Instance.new('UIListLayout')
@@ -979,7 +979,7 @@ function Library:create_ui()
 
                 if self._state then
                     TweenService:Create(Module, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                        Size = UDim2.fromOffset(241, 93 + self._size + self._multiplier)
+                        Size = UDim2.fromOffset(194, 76 + self._size + self._multiplier)
                     }):Play()
 
                     TweenService:Create(Toggle, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
@@ -992,7 +992,7 @@ function Library:create_ui()
                     }):Play()
                 else
                     TweenService:Create(Module, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                        Size = UDim2.fromOffset(241, 93)
+                        Size = UDim2.fromOffset(194, 76)
                     }):Play()
 
                     TweenService:Create(Toggle, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
@@ -1041,11 +1041,11 @@ function Library:create_ui()
             
                     local font_size = TextService:GetTextBoundsAsync(font_params)
                     
-                    Keybind.Size = UDim2.fromOffset(font_size.X + 6, 15)
-                    TextLabel.Size = UDim2.fromOffset(font_size.X, 13)
+                    Keybind.Size = UDim2.fromOffset(font_size.X + 6, 14)
+                    TextLabel.Size = UDim2.fromOffset(font_size.X, 12)
                 else
-                    Keybind.Size = UDim2.fromOffset(31, 15)
-                    TextLabel.Size = UDim2.fromOffset(25, 13)
+                    Keybind.Size = UDim2.fromOffset(27, 14)
+                    TextLabel.Size = UDim2.fromOffset(22, 12)
                 end
             end
 
@@ -1148,15 +1148,15 @@ function Library:create_ui()
                 self._size += settings.customScale or 70
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
             
-                Options.Size = UDim2.fromOffset(241, self._size)
+                Options.Size = UDim2.fromOffset(194, self._size)
             
                 local Paragraph = Instance.new('Frame')
                 Paragraph.BackgroundColor3 = Color3.fromRGB(22, 22, 22) -- was 32, 38, 51
                 Paragraph.BackgroundTransparency = 0.1
-                Paragraph.Size = UDim2.new(0, 207, 0, 30)
+                Paragraph.Size = UDim2.new(0, 166, 0, 30) -- was 207
                 Paragraph.BorderSizePixel = 0
                 Paragraph.Name = "Paragraph"
                 Paragraph.AutomaticSize = Enum.AutomaticSize.Y
@@ -1176,7 +1176,7 @@ function Library:create_ui()
                 Title.BackgroundTransparency = 1
                 Title.TextXAlignment = Enum.TextXAlignment.Left
                 Title.TextYAlignment = Enum.TextYAlignment.Center
-                Title.TextSize = 12
+                Title.TextSize = 11 -- was 12
                 Title.AutomaticSize = Enum.AutomaticSize.XY
                 Title.Parent = Paragraph
             
@@ -1196,7 +1196,7 @@ function Library:create_ui()
                 Body.BackgroundTransparency = 1
                 Body.TextXAlignment = Enum.TextXAlignment.Left
                 Body.TextYAlignment = Enum.TextYAlignment.Top
-                Body.TextSize = 11
+                Body.TextSize = 10 -- was 11
                 Body.TextWrapped = true
                 Body.AutomaticSize = Enum.AutomaticSize.XY
                 Body.Parent = Paragraph
@@ -1228,15 +1228,15 @@ function Library:create_ui()
                 self._size += settings.customScale or 50
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
             
-                Options.Size = UDim2.fromOffset(241, self._size)
+                Options.Size = UDim2.fromOffset(194, self._size)
             
                 local TextFrame = Instance.new('Frame')
                 TextFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 22) -- was 32, 38, 51
                 TextFrame.BackgroundTransparency = 0.1
-                TextFrame.Size = UDim2.new(0, 207, 0, settings.CustomYSize)
+                TextFrame.Size = UDim2.new(0, 166, 0, settings.CustomYSize) -- was 207
                 TextFrame.BorderSizePixel = 0
                 TextFrame.Name = "Text"
                 TextFrame.AutomaticSize = Enum.AutomaticSize.Y
@@ -1263,7 +1263,7 @@ function Library:create_ui()
                 Body.BackgroundTransparency = 1
                 Body.TextXAlignment = Enum.TextXAlignment.Left
                 Body.TextYAlignment = Enum.TextYAlignment.Top
-                Body.TextSize = 10
+                Body.TextSize = 9 -- was 10
                 Body.TextWrapped = true
                 Body.AutomaticSize = Enum.AutomaticSize.XY
                 Body.Parent = TextFrame
@@ -1303,27 +1303,27 @@ function Library:create_ui()
                     self._size = 11
                 end
             
-                self._size += 32
+                self._size += 30 -- was 32
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
             
-                Options.Size = UDim2.fromOffset(241, self._size)
+                Options.Size = UDim2.fromOffset(194, self._size)
             
                 local Label = Instance.new('TextLabel')
                 Label.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
                 Label.TextColor3 = Color3.fromRGB(255, 255, 255)
                 Label.TextTransparency = 0.2
                 Label.Text = settings.title or "Enter text"
-                Label.Size = UDim2.new(0, 207, 0, 13)
+                Label.Size = UDim2.new(0, 166, 0, 12) -- was 207, 13
                 Label.AnchorPoint = Vector2.new(0, 0)
                 Label.Position = UDim2.new(0, 0, 0, 0)
                 Label.BackgroundTransparency = 1
                 Label.TextXAlignment = Enum.TextXAlignment.Left
                 Label.BorderSizePixel = 0
                 Label.Parent = Options
-                Label.TextSize = 10;
+                Label.TextSize = 9; -- was 10
                 Label.LayoutOrder = LayoutOrderModule
             
                 local Textbox = Instance.new('TextBox')
@@ -1333,9 +1333,9 @@ function Library:create_ui()
                 Textbox.PlaceholderText = settings.placeholder or "Enter text..."
                 Textbox.Text = Library._config._flags[settings.flag] or ""
                 Textbox.Name = 'Textbox'
-                Textbox.Size = UDim2.new(0, 207, 0, 15)
+                Textbox.Size = UDim2.new(0, 166, 0, 14) -- was 207, 15
                 Textbox.BorderSizePixel = 0
-                Textbox.TextSize = 10
+                Textbox.TextSize = 9 -- was 10
                 Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 Textbox.BackgroundTransparency = 0.9
                 Textbox.ClearTextOnFocus = false
@@ -1371,12 +1371,12 @@ function Library:create_ui()
                 if self._size == 0 then
                     self._size = 11
                 end
-                self._size += 20
+                self._size += 18 -- was 20
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
-                Options.Size = UDim2.fromOffset(241, self._size)
+                Options.Size = UDim2.fromOffset(194, self._size)
             
                 local Checkbox = Instance.new("TextButton")
                 Checkbox.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
@@ -1386,7 +1386,7 @@ function Library:create_ui()
                 Checkbox.AutoButtonColor = false
                 Checkbox.BackgroundTransparency = 1
                 Checkbox.Name = "Checkbox"
-                Checkbox.Size = UDim2.new(0, 207, 0, 15)
+                Checkbox.Size = UDim2.new(0, 166, 0, 14) -- was 207, 15
                 Checkbox.BorderSizePixel = 0
                 Checkbox.TextSize = 14
                 Checkbox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -1397,15 +1397,15 @@ function Library:create_ui()
                 TitleLabel.Name = "TitleLabel"
                 if SelectedLanguage == "th" then
                     TitleLabel.FontFace = Font.new("rbxasset://fonts/families/NotoSansThai.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-                    TitleLabel.TextSize = 13
+                    TitleLabel.TextSize = 12
                 else
                     TitleLabel.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-                    TitleLabel.TextSize = 11
+                    TitleLabel.TextSize = 10 -- was 11
                 end
                 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
                 TitleLabel.TextTransparency = 0.2
                 TitleLabel.Text = settings.title or "Skibidi"
-                TitleLabel.Size = UDim2.new(0, 142, 0, 13)
+                TitleLabel.Size = UDim2.new(0, 114, 0, 12) -- was 142, 13
                 TitleLabel.AnchorPoint = Vector2.new(0, 0.5)
                 TitleLabel.Position = UDim2.new(0, 0, 0.5, 0)
                 TitleLabel.BackgroundTransparency = 1
@@ -1414,8 +1414,8 @@ function Library:create_ui()
 
                 local KeybindBox = Instance.new("Frame")
                 KeybindBox.Name = "KeybindBox"
-                KeybindBox.Size = UDim2.fromOffset(14, 14)
-                KeybindBox.Position = UDim2.new(1, -35, 0.5, 0)
+                KeybindBox.Size = UDim2.fromOffset(13, 13) -- was 14, 14
+                KeybindBox.Position = UDim2.new(1, -30, 0.5, 0) -- was -35
                 KeybindBox.AnchorPoint = Vector2.new(0, 0.5)
                 KeybindBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 KeybindBox.BorderSizePixel = 0
@@ -1431,7 +1431,7 @@ function Library:create_ui()
                 KeybindLabel.BackgroundTransparency = 1
                 KeybindLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
                 KeybindLabel.TextScaled = false
-                KeybindLabel.TextSize = 10
+                KeybindLabel.TextSize = 9 -- was 10
                 KeybindLabel.Font = Enum.Font.SourceSans
                 KeybindLabel.Text = Library._config._keybinds[settings.flag] 
                     and string.gsub(tostring(Library._config._keybinds[settings.flag]), "Enum.KeyCode.", "") 
@@ -1444,7 +1444,7 @@ function Library:create_ui()
                 Box.BackgroundTransparency = 0.9
                 Box.Position = UDim2.new(1, 0, 0.5, 0)
                 Box.Name = "Box"
-                Box.Size = UDim2.new(0, 15, 0, 15)
+                Box.Size = UDim2.new(0, 14, 0, 14) -- was 15, 15
                 Box.BorderSizePixel = 0
                 Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 Box.Parent = Checkbox
@@ -1474,7 +1474,7 @@ function Library:create_ui()
                             BackgroundTransparency = 0.7
                         }):Play()
                         TweenService:Create(Fill, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(9, 9)
+                            Size = UDim2.fromOffset(8, 8) -- was 9, 9
                         }):Play()
                     else
                         TweenService:Create(Box, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
@@ -1563,11 +1563,11 @@ function Library:create_ui()
                 self._size += 27
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
 
                 local dividerHeight = 1
-                local dividerWidth = 207
+                local dividerWidth = 166 -- was 207
             
                 local OuterFrame = Instance.new('Frame')
                 OuterFrame.Size = UDim2.new(0, dividerWidth, 0, 20)
@@ -1582,14 +1582,14 @@ function Library:create_ui()
                     TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
                     TextLabel.TextTransparency = 0
                     TextLabel.Text = settings.title
-                    TextLabel.Size = UDim2.new(0, 153, 0, 13)
+                    TextLabel.Size = UDim2.new(0, 123, 0, 12) -- was 153, 13
                     TextLabel.Position = UDim2.new(0.5, 0, 0.501, 0)
                     TextLabel.BackgroundTransparency = 1
                     TextLabel.TextXAlignment = Enum.TextXAlignment.Center
                     TextLabel.BorderSizePixel = 0
                     TextLabel.AnchorPoint = Vector2.new(0.5,0.5)
                     TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                    TextLabel.TextSize = 11
+                    TextLabel.TextSize = 10 -- was 11
                     TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                     TextLabel.ZIndex = 3;
                     TextLabel.TextStrokeTransparency = 0;
@@ -1639,13 +1639,13 @@ function Library:create_ui()
                     self._size = 11
                 end
 
-                self._size += 27
+                self._size += 24 -- was 27
 
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size)
                 end
 
-                Options.Size = UDim2.fromOffset(241, self._size)
+                Options.Size = UDim2.fromOffset(194, self._size)
 
                 local Slider = Instance.new('TextButton')
                 Slider.FontFace = Font.new('rbxasset://fonts/families/SourceSansPro.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal);
@@ -1656,7 +1656,7 @@ function Library:create_ui()
                 Slider.AutoButtonColor = false
                 Slider.BackgroundTransparency = 1
                 Slider.Name = 'Slider'
-                Slider.Size = UDim2.new(0, 207, 0, 22)
+                Slider.Size = UDim2.new(0, 166, 0, 20) -- was 207, 22
                 Slider.BorderSizePixel = 0
                 Slider.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
                 Slider.Parent = Options
@@ -1665,16 +1665,16 @@ function Library:create_ui()
                 local TextLabel = Instance.new('TextLabel')
                 if GG.SelectedLanguage == "th" then
                     TextLabel.FontFace = Font.new("rbxasset://fonts/families/NotoSansThai.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-                    TextLabel.TextSize = 13;
+                    TextLabel.TextSize = 12;
                 else
                     TextLabel.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-                    TextLabel.TextSize = 11;
+                    TextLabel.TextSize = 10; -- was 11
                 end;
                 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
                 TextLabel.TextTransparency = 0.20000000298023224
                 TextLabel.Text = settings.title
-                TextLabel.Size = UDim2.new(0, 153, 0, 13)
-                TextLabel.Position = UDim2.new(0, 0, 0.05000000074505806, 0)
+                TextLabel.Size = UDim2.new(0, 123, 0, 12) -- was 153, 13
+                TextLabel.Position = UDim2.new(0, 0, 0.05, 0)
                 TextLabel.BackgroundTransparency = 1
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
                 TextLabel.BorderSizePixel = 0
@@ -1686,9 +1686,9 @@ function Library:create_ui()
                 Drag.BorderColor3 = Color3.fromRGB(0, 0, 0)
                 Drag.AnchorPoint = Vector2.new(0.5, 1)
                 Drag.BackgroundTransparency = 0.8999999761581421
-                Drag.Position = UDim2.new(0.5, 0, 0.949999988079071, 0)
+                Drag.Position = UDim2.new(0.5, 0, 0.95, 0)
                 Drag.Name = 'Drag'
-                Drag.Size = UDim2.new(0, 207, 0, 4)
+                Drag.Size = UDim2.new(0, 166, 0, 4) -- was 207
                 Drag.BorderSizePixel = 0
                 Drag.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 Drag.Parent = Slider
@@ -1703,7 +1703,7 @@ function Library:create_ui()
                 Fill.BackgroundTransparency = 0.5
                 Fill.Position = UDim2.new(0, 0, 0.5, 0)
                 Fill.Name = 'Fill'
-                Fill.Size = UDim2.new(0, 103, 0, 4)
+                Fill.Size = UDim2.new(0, 83, 0, 4) -- was 103
                 Fill.BorderSizePixel = 0
                 Fill.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 Fill.Parent = Drag
@@ -1739,14 +1739,14 @@ function Library:create_ui()
                 Value.TextTransparency = 0.20000000298023224
                 Value.Text = '50'
                 Value.Name = 'Value'
-                Value.Size = UDim2.new(0, 42, 0, 13)
+                Value.Size = UDim2.new(0, 34, 0, 12) -- was 42, 13
                 Value.AnchorPoint = Vector2.new(1, 0)
                 Value.Position = UDim2.new(1, 0, 0, 0)
                 Value.BackgroundTransparency = 1
                 Value.TextXAlignment = Enum.TextXAlignment.Right
                 Value.BorderSizePixel = 0
                 Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                Value.TextSize = 10
+                Value.TextSize = 9 -- was 10
                 Value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 Value.Parent = Slider
 
@@ -1836,14 +1836,14 @@ function Library:create_ui()
                         self._size = 11
                     end
 
-                    self._size += 44
+                    self._size += 40 -- was 44
                 end;
 
                 if not settings.Order then
                     if ModuleManager._state then
-                        Module.Size = UDim2.fromOffset(241, 93 + self._size)
+                        Module.Size = UDim2.fromOffset(194, 76 + self._size)
                     end
-                    Options.Size = UDim2.fromOffset(241, self._size)
+                    Options.Size = UDim2.fromOffset(194, self._size)
                 end
 
                 local Dropdown = Instance.new('TextButton')
@@ -1854,7 +1854,7 @@ function Library:create_ui()
                 Dropdown.AutoButtonColor = false
                 Dropdown.BackgroundTransparency = 1
                 Dropdown.Name = 'Dropdown'
-                Dropdown.Size = UDim2.new(0, 207, 0, 39)
+                Dropdown.Size = UDim2.new(0, 166, 0, 34) -- was 207, 39
                 Dropdown.BorderSizePixel = 0
                 Dropdown.TextSize = 14
                 Dropdown.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -1873,15 +1873,15 @@ function Library:create_ui()
                 local TextLabel = Instance.new('TextLabel')
                 if GG.SelectedLanguage == "th" then
                     TextLabel.FontFace = Font.new("rbxasset://fonts/families/NotoSansThai.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-                    TextLabel.TextSize = 13;
+                    TextLabel.TextSize = 12;
                 else
                     TextLabel.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
-                    TextLabel.TextSize = 11;
+                    TextLabel.TextSize = 10; -- was 11
                 end;
                 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
                 TextLabel.TextTransparency = 0.20000000298023224
                 TextLabel.Text = settings.title
-                TextLabel.Size = UDim2.new(0, 207, 0, 13)
+                TextLabel.Size = UDim2.new(0, 166, 0, 12) -- was 207, 13
                 TextLabel.BackgroundTransparency = 1
                 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
                 TextLabel.BorderSizePixel = 0
@@ -1894,9 +1894,9 @@ function Library:create_ui()
                 Box.BorderColor3 = Color3.fromRGB(0, 0, 0)
                 Box.AnchorPoint = Vector2.new(0.5, 0)
                 Box.BackgroundTransparency = 0.8999999761581421
-                Box.Position = UDim2.new(0.5, 0, 1.2000000476837158, 0)
+                Box.Position = UDim2.new(0.5, 0, 1.2, 0)
                 Box.Name = 'Box'
-                Box.Size = UDim2.new(0, 207, 0, 22)
+                Box.Size = UDim2.new(0, 166, 0, 20) -- was 207, 22
                 Box.BorderSizePixel = 0
                 Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 Box.Parent = TextLabel
@@ -1911,7 +1911,7 @@ function Library:create_ui()
                 Header.BackgroundTransparency = 1
                 Header.Position = UDim2.new(0.5, 0, 0, 0)
                 Header.Name = 'Header'
-                Header.Size = UDim2.new(0, 207, 0, 22)
+                Header.Size = UDim2.new(0, 166, 0, 20) -- was 207, 22
                 Header.BorderSizePixel = 0
                 Header.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 Header.Parent = Box
@@ -1921,14 +1921,14 @@ function Library:create_ui()
                 CurrentOption.TextColor3 = Color3.fromRGB(255, 255, 255)
                 CurrentOption.TextTransparency = 0.20000000298023224
                 CurrentOption.Name = 'CurrentOption'
-                CurrentOption.Size = UDim2.new(0, 161, 0, 13)
+                CurrentOption.Size = UDim2.new(0, 129, 0, 12) -- was 161, 13
                 CurrentOption.AnchorPoint = Vector2.new(0, 0.5)
-                CurrentOption.Position = UDim2.new(0.04999988153576851, 0, 0.5, 0)
+                CurrentOption.Position = UDim2.new(0.05, 0, 0.5, 0)
                 CurrentOption.BackgroundTransparency = 1
                 CurrentOption.TextXAlignment = Enum.TextXAlignment.Left
                 CurrentOption.BorderSizePixel = 0
                 CurrentOption.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                CurrentOption.TextSize = 10
+                CurrentOption.TextSize = 9 -- was 10
                 CurrentOption.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 CurrentOption.Parent = Header
                 local UIGradient = Instance.new('UIGradient')
@@ -1945,7 +1945,7 @@ function Library:create_ui()
                 Arrow.AnchorPoint = Vector2.new(0, 0.5)
                 Arrow.Image = 'rbxassetid://84232453189324'
                 Arrow.BackgroundTransparency = 1
-                Arrow.Position = UDim2.new(0.9100000262260437, 0, 0.5, 0)
+                Arrow.Position = UDim2.new(0.91, 0, 0.5, 0)
                 Arrow.Name = 'Arrow'
                 Arrow.Size = UDim2.new(0, 8, 0, 8)
                 Arrow.BorderSizePixel = 0
@@ -1959,7 +1959,7 @@ function Library:create_ui()
                 Options.AutomaticCanvasSize = Enum.AutomaticSize.XY
                 Options.ScrollBarThickness = 0
                 Options.Name = 'Options'
-                Options.Size = UDim2.new(0, 207, 0, 0)
+                Options.Size = UDim2.new(0, 166, 0, 0) -- was 207
                 Options.BackgroundTransparency = 1
                 Options.Position = UDim2.new(0, 0, 1, 0)
                 Options.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2084,19 +2084,19 @@ function Library:create_ui()
                         CurrentDropSizeState = self._size;
 
                         TweenService:Create(Module, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(241, 93 + ModuleManager._size + ModuleManager._multiplier)
+                            Size = UDim2.fromOffset(194, 76 + ModuleManager._size + ModuleManager._multiplier)
                         }):Play()
 
                         TweenService:Create(Module.Options, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(241, ModuleManager._size + ModuleManager._multiplier)
+                            Size = UDim2.fromOffset(194, ModuleManager._size + ModuleManager._multiplier)
                         }):Play()
 
                         TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(207, 39 + self._size)
+                            Size = UDim2.fromOffset(166, 34 + self._size)
                         }):Play()
 
                         TweenService:Create(Box, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(207, 22 + self._size)
+                            Size = UDim2.fromOffset(166, 20 + self._size)
                         }):Play()
 
                         TweenService:Create(Arrow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
@@ -2108,19 +2108,19 @@ function Library:create_ui()
                         CurrentDropSizeState = 0;
 
                         TweenService:Create(Module, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(241, 93 + ModuleManager._size + ModuleManager._multiplier)
+                            Size = UDim2.fromOffset(194, 76 + ModuleManager._size + ModuleManager._multiplier)
                         }):Play()
 
                         TweenService:Create(Module.Options, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(241, ModuleManager._size + ModuleManager._multiplier)
+                            Size = UDim2.fromOffset(194, ModuleManager._size + ModuleManager._multiplier)
                         }):Play()
 
                         TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(207, 39)
+                            Size = UDim2.fromOffset(166, 34)
                         }):Play()
 
                         TweenService:Create(Box, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                            Size = UDim2.fromOffset(207, 22)
+                            Size = UDim2.fromOffset(166, 20)
                         }):Play()
 
                         TweenService:Create(Arrow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
@@ -2138,8 +2138,8 @@ function Library:create_ui()
                         Option.Active = false
                         Option.TextTransparency = 0.6000000238418579
                         Option.AnchorPoint = Vector2.new(0, 0.5)
-                        Option.TextSize = 10
-                        Option.Size = UDim2.new(0, 186, 0, 16)
+                        Option.TextSize = 9 -- was 10
+                        Option.Size = UDim2.new(0, 149, 0, 15) -- was 186, 16
                         Option.TextColor3 = Color3.fromRGB(255, 255, 255)
                         Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
                         Option.Text = (typeof(value) == "string" and value) or value.Name;
@@ -2148,7 +2148,7 @@ function Library:create_ui()
                         Option.BackgroundTransparency = 1
                         Option.TextXAlignment = Enum.TextXAlignment.Left
                         Option.Selectable = false
-                        Option.Position = UDim2.new(0.04999988153576851, 0, 0.34210526943206787, 0)
+                        Option.Position = UDim2.new(0.05, 0, 0.342, 0)
                         Option.BorderSizePixel = 0
                         Option.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                         Option.Parent = Options
@@ -2182,8 +2182,8 @@ function Library:create_ui()
                             continue
                         end
     
-                        DropdownManager._size += 16
-                        Options.Size = UDim2.fromOffset(207, DropdownManager._size)
+                        DropdownManager._size += 15 -- was 16
+                        Options.Size = UDim2.fromOffset(166, DropdownManager._size)
                     end
                 end
 
@@ -2217,16 +2217,16 @@ function Library:create_ui()
                     self._size = 11
                 end
             
-                self._size += 20
+                self._size += 18 -- was 20
             
                 if ModuleManager._state then
-                    Module.Size = UDim2.fromOffset(241, 93 + self._size);
+                    Module.Size = UDim2.fromOffset(194, 76 + self._size);
                 end
             
-                Options.Size = UDim2.fromOffset(241, self._size);
+                Options.Size = UDim2.fromOffset(194, self._size);
             
                 local FeatureContainer = Instance.new("Frame")
-                FeatureContainer.Size = UDim2.new(0, 207, 0, 16)
+                FeatureContainer.Size = UDim2.new(0, 166, 0, 15) -- was 207, 16
                 FeatureContainer.BackgroundTransparency = 1
                 FeatureContainer.Parent = Options
                 FeatureContainer.LayoutOrder = LayoutOrderModule
@@ -2238,8 +2238,8 @@ function Library:create_ui()
             
                 local FeatureButton = Instance.new("TextButton")
                 FeatureButton.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
-                FeatureButton.TextSize = 11;
-                FeatureButton.Size = UDim2.new(1, -35, 0, 16)
+                FeatureButton.TextSize = 10; -- was 11
+                FeatureButton.Size = UDim2.new(1, -30, 0, 15) -- was 1, -35, 16
                 FeatureButton.BackgroundColor3 = Color3.fromRGB(22, 22, 22) -- was 32, 38, 51
                 FeatureButton.TextColor3 = Color3.fromRGB(210, 210, 210)
                 FeatureButton.Text = "    " .. settings.title or "    " .. "Feature"
@@ -2249,7 +2249,7 @@ function Library:create_ui()
                 FeatureButton.Parent = FeatureContainer
             
                 local RightContainer = Instance.new("Frame")
-                RightContainer.Size = UDim2.new(0, 45, 0, 16)
+                RightContainer.Size = UDim2.new(0, 40, 0, 15) -- was 45, 16
                 RightContainer.BackgroundTransparency = 1
                 RightContainer.Parent = FeatureContainer
             
@@ -2262,10 +2262,10 @@ function Library:create_ui()
             
                 local KeybindBox = Instance.new("TextLabel")
                 KeybindBox.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
-                KeybindBox.Size = UDim2.new(0, 15, 0, 15)
+                KeybindBox.Size = UDim2.new(0, 14, 0, 14) -- was 15, 15
                 KeybindBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- was 152, 181, 255
                 KeybindBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-                KeybindBox.TextSize = 11
+                KeybindBox.TextSize = 10 -- was 11
                 KeybindBox.BackgroundTransparency = 1
                 KeybindBox.LayoutOrder = 2;
                 KeybindBox.Parent = RightContainer
@@ -2306,7 +2306,7 @@ function Library:create_ui()
             
                 if not settings.disablecheck then
                     local Checkbox = Instance.new("TextButton")
-                    Checkbox.Size = UDim2.new(0, 15, 0, 15)
+                    Checkbox.Size = UDim2.new(0, 14, 0, 14) -- was 15, 15
                     Checkbox.BackgroundColor3 = checked and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(22, 22, 22) -- was 152,181,255 / 32,38,51
                     Checkbox.Text = ""
                     Checkbox.Parent = RightContainer
@@ -2412,5 +2412,3 @@ function Library:create_ui()
 
     return self
 end
-
-return Library
