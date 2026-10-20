@@ -389,11 +389,11 @@ function Library:create_ui()
     ClientName.TextTransparency = 0.20000000298023224
     ClientName.Text = 'Ethereal' -- was 'March'
     ClientName.Name = 'ClientName'
-    ClientName.Size = UDim2.new(0, 100, 0, 13)
-    ClientName.AnchorPoint = Vector2.new(0.5, 0.5)
-    ClientName.Position = UDim2.new(0.5, 0, 0.055, 0)
+    ClientName.Size = UDim2.new(0, 80, 0, 13)
+    ClientName.AnchorPoint = Vector2.new(0, 0.5)
+    ClientName.Position = UDim2.new(0.025, 0, 0.055, 0)
     ClientName.BackgroundTransparency = 1
-    ClientName.TextXAlignment = Enum.TextXAlignment.Center
+    ClientName.TextXAlignment = Enum.TextXAlignment.Left
     ClientName.BorderSizePixel = 0
     ClientName.BorderColor3 = Color3.fromRGB(0, 0, 0)
     ClientName.TextSize = 13
@@ -420,7 +420,7 @@ function Library:create_ui()
     UICorner.CornerRadius = UDim.new(1, 0)
     UICorner.Parent = Pin
     
-    -- Icon removed (left logo)
+    -- left icon removed
     
     local Divider = Instance.new('Frame')
     Divider.Name = 'Divider'
