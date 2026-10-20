@@ -1,4 +1,12 @@
-getgenv().GG = {
+-- ============================================================================
+-- Ethereal UI — Full Stealth Build (v3)
+-- - No static getgenv() globals
+-- - gethui() hidden container
+-- - Random names, markers, config folder
+-- - Full widget set preserved
+-- ============================================================================
+
+local GG = {
     Language = {
         CheckboxEnabled = "Enabled",
         CheckboxDisabled = "Disabled",
@@ -47,7 +55,7 @@ local Debris = cloneref(game:GetService('Debris'))
 local mouse = Players.LocalPlayer:GetMouse()
 
 -- ============================================================================
--- PATCH 1: Anti-detection layer (mirrors Allusive's stealth system)
+-- Anti-detection layer
 -- ============================================================================
 local _obf_counter = 0
 
@@ -155,9 +163,6 @@ local Util = setmetatable({
     end
 }, Util)
 
--- ============================================================================
--- PATCH 2: Config uses random folder name on disk
--- ============================================================================
 local Config = setmetatable({
     save = function(self: any, file_name: any, config: any)
         local success_save, result = pcall(function()
@@ -218,9 +223,7 @@ function Library.new()
     return self
 end
 
--- ============================================================================
--- PATCH 3: Hidden notification ScreenGui (NO RobloxGui hijack)
--- ============================================================================
+-- Hidden notification ScreenGui
 _notif_gui = Instance.new("ScreenGui")
 _notif_gui.Name = _rand_str(math.random(14, 22))
 _notif_gui.ResetOnSpawn = false
@@ -363,9 +366,6 @@ function Library:remove_table_value(__table: any, table_value: string)
 end
 
 function Library:create_ui()
-    -- ========================================================================
-    -- PATCH 4: Random name + gethui + registry
-    -- ========================================================================
     local old_reg = getgenv()._EtherealRegistry
     if old_reg and typeof(old_reg.MainGui) == "Instance" and old_reg.MainGui.Parent then
         pcall(function() old_reg.MainGui:Destroy() end)
@@ -387,7 +387,6 @@ function Library:create_ui()
         GlobalKey = _rand_global,
         MarkerAttribute = _rand_marker,
     }
-    -- ========================================================================
 
     local Container = Instance.new('Frame')
     Container.ClipsDescendants = true
@@ -562,9 +561,6 @@ function Library:create_ui()
     Connections['container_input_began'] = Container.InputBegan:Connect(on_drag)
     Connections['input_changed'] = UserInputService.InputChanged:Connect(drag)
 
-    -- ========================================================================
-    -- PATCH 5: Cleanup registry on destroy
-    -- ========================================================================
     self:removed(function()
         self._ui = nil
         Connections:disconnect_all()
@@ -576,7 +572,6 @@ function Library:create_ui()
             getgenv()._EtherealRegistry = nil
         end
     end)
-    -- ========================================================================
 
     function self:Update1Run(a)
         if a == "nil" then
