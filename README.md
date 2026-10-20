@@ -21,7 +21,7 @@ Welcome to **Ethereal UI Library**, a sleek and highly customizable Roblox UI li
 Load the library with:
 
 ```lua
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MarchHubOnTopFr/Allusive-UI/refs/heads/main/Source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bestmanlololol-alt/Ethereal-ui/refs/heads/main/Ui"))()
 local main = Library.new()
 
 main:load() -- Initialize the UI
@@ -53,7 +53,7 @@ main:load() -- Initialize the UI
 
 ## ✨ Overview
 
-The Allusive UI Library simplifies complex UI creation with a modular system organized into tabs and modules. It supports various interactive components and persistent user preferences through an easy-to-use configuration system.
+The Ethereal UI Library simplifies complex UI creation with a modular system organized into tabs and modules. It supports various interactive components and persistent user preferences through an easy-to-use configuration system.
 
 ---
 
@@ -249,7 +249,7 @@ Library.SendNotification({
 ## 👨‍🚀 Custom Example
 
 ```lua
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MarchHubOnTopFr/Allusive-UI/refs/heads/main/Source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bestmanlololol-alt/Ethereal-ui/refs/heads/main/Ui"))()
 local main = Library.new()
 
 -- Tabs
